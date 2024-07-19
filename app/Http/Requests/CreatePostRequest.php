@@ -3,7 +3,19 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use OpenApi\Annotations as OA;
 
+/**
+ * @OA\Schema(
+ *     schema="CreatePostRequest",
+ *     type="object",
+ *     required={"title", "content", "author"},
+ *     @OA\Property(property="title", type="string"),
+ *     @OA\Property(property="content", type="string"),
+ *     @OA\Property(property="author", type="string"),
+ *     @OA\Property(property="scheduled_at", type="string", format="date-time")
+ * )
+ */
 class CreatePostRequest extends FormRequest
 {
     /**

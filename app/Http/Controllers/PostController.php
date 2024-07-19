@@ -7,6 +7,9 @@ use App\Http\Resources\PostResource;
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
 
+/**
+ * @OA\Info(title="Blog API", version="1")
+ */
 class PostController extends Controller
 {
     public function __construct()
@@ -25,6 +28,21 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/posts",
+     *     tags={"Posts"},
+     *     summary="Create a new post",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreatePostRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Post created",
+     *         @OA\JsonContent(ref="#/components/schemas/PostResource")
+     *     ),
+     *     security={{ "api_key": {} }}
+     * )
      */
     public function store(CreatePostRequest $request)
     {
