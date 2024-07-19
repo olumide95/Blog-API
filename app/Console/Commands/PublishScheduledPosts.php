@@ -27,7 +27,7 @@ class PublishScheduledPosts extends Command
      */
     public function handle()
     {
-        $posts = Post::withoutGlobalScopes()->where('publish_at', '<=', now())->get();
+        $posts = Post::unPublished()->get();
 
         foreach ($posts as $post) {
             $post->update(['publish_at' => null]);

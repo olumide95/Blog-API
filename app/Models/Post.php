@@ -43,4 +43,16 @@ class Post extends Model
 
         static::addGlobalScope(new PublishedScope());
     }
+
+    /**
+     * Scope a query to only include unpublished post.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUnPublished($query)
+    {
+        return $query->withoutGlobalScopes(
+            [PublishedScope::class]
+        )->where('publish_at', '<=', now());
+    }
 }
