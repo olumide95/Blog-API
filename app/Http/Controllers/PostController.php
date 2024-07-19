@@ -22,7 +22,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : JsonResource
+    public function index(): JsonResource
     {
         $posts = Post::paginate();
         return PostResource::collection($posts)->additional(['message' => 'Post retrieved sucessfully']);
