@@ -9,10 +9,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\AuthResource;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): JsonResource
     {
         $user = User::create([
             'name' => $request->name,
@@ -25,7 +27,7 @@ class AuthController extends Controller
         return (new AuthResource($user))->additional(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): JsonResource
     {
         $user = User::where('email', $request->email)->first();
 
@@ -40,7 +42,7 @@ class AuthController extends Controller
         return (new AuthResource($user))->additional(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
 

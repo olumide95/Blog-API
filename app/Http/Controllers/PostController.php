@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\JsonResponse;
 
 /**
  * @OA\Info(title="Blog API", version="1")
@@ -20,7 +22,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : JsonResource
     {
         $posts = Post::paginate();
         return PostResource::collection($posts)->additional(['message' => 'Post retrieved sucessfully']);
@@ -44,7 +46,7 @@ class PostController extends Controller
      *     security={{"sanctum":{}}}
      * )
      */
-    public function store(CreatePostRequest $request)
+    public function store(CreatePostRequest $request): JsonResource
     {
         $post = Post::create($request->validated());
         return (new PostResource($post))->additional(['message' => 'Post created sucessfully']);
@@ -53,7 +55,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $post): JsonResource
     {
         return new PostResource($post);
     }
@@ -61,7 +63,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreatePostRequest $request, Post $post)
+    public function update(CreatePostRequest $request, Post $post): PostResource
     {
         $post->update($request->validated());
         return (new PostResource($post))->additional(['message' => 'Post updated sucessfully']);
@@ -71,7 +73,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): JsonResponse
     {
         $post->delete();
         return response()->json(['message' => 'Post deleted sucessfully'], 200);
