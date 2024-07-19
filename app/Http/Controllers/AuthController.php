@@ -7,6 +7,8 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\AuthResource;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -20,7 +22,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
+        return (new AuthResource($user))->additional(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
     public function login(LoginRequest $request)
@@ -35,7 +37,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['access_token' => $token, 'token_type' => 'Bearer']);
+        return (new AuthResource($user))->additional(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
     public function logout(Request $request)
