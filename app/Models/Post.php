@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Scopes\PublishedScope;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -37,7 +38,7 @@ class Post extends Model
      *
      * @return void
      */
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
@@ -49,7 +50,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeUnPublished($query)
+    public function scopeUnPublished($query): Builder
     {
         return $query->withoutGlobalScopes(
             [PublishedScope::class]

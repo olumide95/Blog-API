@@ -14,6 +14,12 @@ use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user
+     * @param RegisterRequest $request
+     *
+     * @return JsonResource
+     */
     public function register(RegisterRequest $request): JsonResource
     {
         $user = User::create([
@@ -27,6 +33,12 @@ class AuthController extends Controller
         return (new AuthResource($user))->additional(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
+    /**
+     * Login a user
+     * @param LoginRequest $request
+     *
+     * @return JsonResource
+     */
     public function login(LoginRequest $request): JsonResource
     {
         $user = User::where('email', $request->email)->first();
@@ -42,6 +54,12 @@ class AuthController extends Controller
         return (new AuthResource($user))->additional(['access_token' => $token, 'token_type' => 'Bearer']);
     }
 
+    /**
+    * Logout a user
+    * @param Request $request
+    *
+    * @return JsonResponse
+    */
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();

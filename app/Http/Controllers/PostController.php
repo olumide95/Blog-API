@@ -21,6 +21,7 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
+     * @return JsonResource
      */
     public function index(): JsonResource
     {
@@ -45,6 +46,10 @@ class PostController extends Controller
      *     ),
      *     security={{"sanctum":{}}}
      * )
+     *
+     * @param CreatePostRequest $request
+     *
+     * @return JsonResource
      */
     public function store(CreatePostRequest $request): JsonResource
     {
@@ -54,6 +59,9 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
+     * @param Post $post
+     *
+     * @return JsonResource
      */
     public function show(Post $post): JsonResource
     {
@@ -62,6 +70,10 @@ class PostController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param CreatePostRequest $request
+     * @param Post $post
+     *
+     * @return JsonResource
      */
     public function update(CreatePostRequest $request, Post $post): JsonResource
     {
@@ -72,6 +84,9 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param Post $post
+     *
+     * @return JsonResponse
      */
     public function destroy(Post $post): JsonResponse
     {
