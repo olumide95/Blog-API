@@ -23,3 +23,7 @@ Run the PHPUnit tests: : `php artisan test`
 ## Trigger Post Publishing Command
 
 `php artisan app:publish-scheduled-posts`
+
+## Regenrating API Documentation
+
+`php artisan l5-swagger:generate`
