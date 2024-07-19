@@ -19,3 +19,7 @@
 ## Running Tests
 
 Run the PHPUnit tests: : `php artisan test`
+
+## Trigger Post Publishing Command
+
+Run the PHPUnit tests: : `php artisan app:publish-scheduled-posts`
