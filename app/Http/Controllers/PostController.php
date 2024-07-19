@@ -41,7 +41,7 @@ class PostController extends Controller
      *         description="Post created",
      *         @OA\JsonContent(ref="#/components/schemas/PostResource")
      *     ),
-     *     security={{ "api_key": {} }}
+     *     security={{"sanctum":{}}}
      * )
      */
     public function store(CreatePostRequest $request)
