@@ -13,8 +13,7 @@
 3. Set up environment variables: `cp .env.example .env` and modify as needed
 4. Generate application key: `php artisan key:generate`
 5. Run migrations: `php artisan migrate`
-6. Seed the database: `php artisan db:seed`
-7. Serve the application: `php artisan serve`
+6. Serve the application: `php artisan serve`
 
 ## Running Tests
 
