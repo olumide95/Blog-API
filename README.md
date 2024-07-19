@@ -17,6 +17,11 @@
 7. Serve the application: `php artisan serve`
 8. API documentation can be found at : `/api/documentation`
 
+## Getting Admin Token
+
+Email: admin@admin.com
+Password: password
+
 ## Running Tests
 
 Run the PHPUnit tests: : `php artisan test`
