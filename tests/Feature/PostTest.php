@@ -12,7 +12,8 @@ use Carbon\Carbon;
 
 class PostTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     public function setUp(): void
     {

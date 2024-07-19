@@ -41,6 +41,6 @@ class Post extends Model
     {
         parent::boot();
 
-        static::addGlobalScope(new PublishedScope);
+        static::addGlobalScope(new PublishedScope());
     }
 }
