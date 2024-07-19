@@ -21,7 +21,11 @@
 
 Run the PHPUnit tests: : `php artisan test`
 
-## Trigger Post Publishing Command
+## Automating Post Publishing (Hourly)
+
+`php artisan schedule:run >> /dev/null 2>&1`
+
+## Trigger Post Publishing Command Manually
 
 `php artisan app:publish-scheduled-posts`
 
